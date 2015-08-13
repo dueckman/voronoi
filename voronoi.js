@@ -103,6 +103,7 @@
                     y1: startPoint[1],
                     x2: endpoint[0],
                     y2: endpoint[1],
+                    angle: boundaryAngle,
                     id: "b" + String( boundaries.length ),
                     type: "boundary",
                     parentCxn: cxn,
@@ -151,9 +152,13 @@
             var boundary = boundaries[i];
             
             if ( radius > boundary.parentCxn.length / 2 ) {
-                console.log("Hey!");
+
+                var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
+                var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
+
                 svg.select( "#" + boundary.id )
-                  .attr ( "stroke-width", 5 )
+                  .attr ( "x2", newEndpoint[0] )
+                  .attr ( "y2", newEndpoint[1] )
                 
                 //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
             //select SVG object
