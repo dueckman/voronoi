@@ -143,8 +143,11 @@
     function update( radius ) {  
         svg.selectAll("circle")
           .attr("r", radius);   
+          
+        console.log("update");  
     
         if ( radius > ( shortestCxnL / 2 ) ) {
+            console.log("Hey!");
             for (i = 0; i < boundaries.length; i++) {
                 var boundary = boundaries[i];
                 var cxn = connectCircles( boundary.parentCircles )[0];
