@@ -31,6 +31,7 @@
           .attr( "x2", line.x2 )
           .attr( "y2", line.y2 )
           .attr( "class", line.type )
+          .attr( "id", line.id )
           .attr( "stroke", "gray" )
           .attr( "stroke-width", 0.5 )
     }
