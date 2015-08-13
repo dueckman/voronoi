@@ -131,7 +131,7 @@
             connections = connectCircles(circles);
             for (i = 0; i < connections.length; i++) {
                 drawLine(connections[i]);
-                var cxnL = getLineLength( connections[i] );
+                var cxnL = getLineLength( connections[i].x1, connections[i].y1, connections[i].x2, connections[i].y2 );
                 if ( cxnL < shortestCxnL ) {
                     shortestCxnL = cxnL;
                 }
