@@ -59,17 +59,17 @@
         return [ x2, y2 ];
     }    
 
-    function connectCircles( circlesArray ) {
-        for (i = 0; i < circlesArray.length - 1; i++) {
-            for (j = i + 1; j < circlesArray.length; j++) {
+    function connectCircles() {
+        for (i = 0; i < circles.length - 1; i++) {
+            for (j = i + 1; j < circles.length; j++) {
             
                 var cxn = {
-                    x1: circlesArray[i].x,
-                    y1: circlesArray[i].y,
-                    x2: circlesArray[j].x,
-                    y2: circlesArray[j].y,
+                    x1: circles[i].x,
+                    y1: circles[i].y,
+                    x2: circles[j].x,
+                    y2: circles[j].y,
                     type: "connection",
-                    parentCircles: [ circlesArray[i], circlesArray[j] ],
+                    parentCircles: [ circles[i], circles[j] ],
                 };
                 
                 cxn.length = getLineLength( cxn );
