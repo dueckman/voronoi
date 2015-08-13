@@ -60,8 +60,6 @@
     }    
 
     function connectCircles( circlesArray ) {
-        var tempCxns = [];
-        
         for (i = 0; i < circlesArray.length - 1; i++) {
             for (j = i + 1; j < circlesArray.length; j++) {
             
@@ -76,11 +74,10 @@
                 
                 cxn.length = getLineLength( cxn );
                 
-                tempCxns.push(cxn);
+                connections.push(cxn);
+                drawLine( cxn );
             }  
         }
-        
-        return tempCxns;
     } 
 
     function findBoundaries() {
@@ -109,8 +106,6 @@
                     parentCircles: cxn.parentCircles 
                 };
                 
-                console.log( boundary.id );
-                
                 boundaries.push(boundary);
                 drawLine(boundary); 
             } 
@@ -135,7 +130,7 @@
         } else if ( !circlesConnected ) {
             connections = connectCircles(circles);
             for (i = 0; i < connections.length; i++) {
-                drawLine(connections[i]);
+                
             }
             
             findBoundaries();
