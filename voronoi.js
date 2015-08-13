@@ -35,13 +35,13 @@
           .attr( "stroke-width", 0.5 )
     }
 
-    function makeAnglePositive(radians) {
+    function makeAnglePositive( radians ) {
         if ( radians < 0 ) {  radians = 2 * Math.PI + radians;  }
         return radians;
     } 
 
-    function getLineLength( line ) {
-        return Math.sqrt( Math.pow( line.x2 - line.x1, 2 ) + Math.pow( line.y2 - line.y1, 2 ) );
+    function getLineLength( x1, y1, x2, y2 ) {
+        return Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
     }
 
     function getLineMidpoint( line ) {
@@ -70,7 +70,8 @@
                     x2: circlesArray[j].x,
                     y2: circlesArray[j].y,
                     type: "connection",
-                    parentCircles: [ circlesArray[i], circlesArray[j] ]
+                    parentCircles: [ circlesArray[i], circlesArray[j] ],
+                    length: getLineLength( circlesArray[i].x, circlesArray[i].y, circlesArray[j].x, circlesArray[j].y )
                 };
             
                 tempCxns.push(cxn);
@@ -101,6 +102,7 @@
                     x2: endpoint[0],
                     y2: endpoint[1],
                     type: "boundary",
+                    parentCxn: cxn,
                     parentCircles: cxn.parentCircles 
                 };
             
@@ -144,24 +146,22 @@
         svg.selectAll("circle")
           .attr("r", radius);   
 
-    /* this part breaks things
-    
         if ( radius > ( shortestCxnL / 2 ) ) {
-            console.log("Hey!");
+            console.log( boundaries.length );
+            
+            // this part breaks things
             for (i = 0; i < boundaries.length; i++) {
                 var boundary = boundaries[i];
-                var cxn = connectCircles( boundary.parentCircles )[0];
                 
-                if ( radius > getLineLength( cxn ) / 2 ) {
+                if ( radius > getLineLength( boundary.parentCxn ) / 2 ) {
                     console.log("Hey!");
                     //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
                 //select SVG object
                 
                 }
             }
+            //
         }
-    */
-    
     } 
     
 })();
