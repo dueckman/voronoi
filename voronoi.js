@@ -128,13 +128,9 @@
             drawCircle(circle);
 
         } else if ( !circlesConnected ) {
-            connections = connectCircles(circles);
-            for (i = 0; i < connections.length; i++) {
-                
-            }
-            
-            findBoundaries();
+            connectCircles();            
             circlesConnected = true;
+            findBoundaries();
         } 
     });
 
