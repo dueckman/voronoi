@@ -168,7 +168,7 @@
             } else {
                 
                 boundary.x2 = boundary.x1;
-                boundary.y2 = boundary.y1];
+                boundary.y2 = boundary.y1;
                 
                 svg.select( "#" + boundary.id )
                   .attr ( "x2", boundary.x1 )
