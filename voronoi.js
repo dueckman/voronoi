@@ -139,19 +139,18 @@
         svg.selectAll("circle")
           .attr("r", radius);   
     
-    /*
         for (i = 0; i < boundaries.length; i++) {
             var boundary = boundaries[i];
-            var c0 = boundary.parentCircles[0];
-            var c1 = boundary.parentCircles[1];
+            var cxn = connectCircles( boundary.parentCircles );
             
-            if (radius > getLineLength()) {
-
-                var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
-            //select SVG object    
+            if ( radius > getLineLength( cxn ) / 2 ) {
+                console.log("Hey!");
+                //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
+            //select SVG object
+            
+            }
         }
         
-    */    
     } 
 
         
