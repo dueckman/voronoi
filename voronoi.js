@@ -75,7 +75,7 @@
                 cxn.length = getLineLength( cxn );
                 
                 connections.push(cxn);
-                drawLine( cxn );
+                // drawLine( cxn );
             }  
         }
     } 
