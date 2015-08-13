@@ -143,8 +143,8 @@
     function update( radius ) {  
         svg.selectAll("circle")
           .attr("r", radius);   
-          
-        console.log("update");  
+
+    /* this part breaks things
     
         if ( radius > ( shortestCxnL / 2 ) ) {
             console.log("Hey!");
@@ -161,5 +161,7 @@
             }
         }
     } 
+    
+    */
 
 })();
