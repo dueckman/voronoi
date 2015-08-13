@@ -3,12 +3,12 @@
     var MAX_N_CIRCLES = 5;
     var circles = [];               
     var connections = [];
+    var shortestCxnL = 1000;
     var boundaries = [];           
     var circlesConnected = false;	    
 
     var svg = d3.select( "svg" );
     input = d3.select( "#nRadius" )  
-
 
     input.on( "input", function() {
         update( +this.value );
@@ -76,7 +76,7 @@
                 tempCxns.push(cxn);
             }  
         }
-        console.log(tempCxns);
+        
         return tempCxns;
     } 
 
@@ -129,6 +129,10 @@
             connections = connectCircles(circles);
             for (i = 0; i < connections.length; i++) {
                 drawLine(connections[i]);
+                cxnL = getLineLength( connections[i] );
+                if ( cxnL < shortestCxnL ) {
+                    shortestCxnL = cxnL;
+                }
             }
             
             findBoundaries();
@@ -136,22 +140,23 @@
         } 
     });
 
-    function update(radius) {  
+    function update( radius ) {  
         svg.selectAll("circle")
           .attr("r", radius);   
     
-        for (i = 0; i < boundaries.length; i++) {
-            var boundary = boundaries[i];
-            var cxn = connectCircles( boundary.parentCircles )[0];
-            
-            if ( radius > getLineLength( cxn ) / 2 ) {
-                console.log("Hey!");
-                //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
-            //select SVG object
-            
+        if ( radius > ( shortestCxnL / 2 ) ) {
+            for (i = 0; i < boundaries.length; i++) {
+                var boundary = boundaries[i];
+                var cxn = connectCircles( boundary.parentCircles )[0];
+                
+                if ( radius > getLineLength( cxn ) / 2 ) {
+                    console.log("Hey!");
+                    //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
+                //select SVG object
+                
+                }
             }
         }
-        
     } 
 
 })();
