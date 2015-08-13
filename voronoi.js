@@ -102,11 +102,14 @@
                     y1: startPoint[1],
                     x2: endpoint[0],
                     y2: endpoint[1],
+                    id: "b" + String( boundaries.length ),
                     type: "boundary",
                     parentCxn: cxn,
                     parentCircles: cxn.parentCircles 
                 };
-            
+                
+                console.log( boundary.id );
+                
                 boundaries.push(boundary);
                 drawLine(boundary); 
             } 
