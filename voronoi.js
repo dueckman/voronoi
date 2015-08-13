@@ -59,7 +59,7 @@
     }    
 
     function connectCircles( circlesArray ) {
-        var temp_cxns = [];
+        var tempCxns = [];
         
         for (i = 0; i < circlesArray.length - 1; i++) {
             for (j = i + 1; j < circlesArray.length; j++) {
