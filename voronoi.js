@@ -155,6 +155,9 @@
                 var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
                 var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
 
+                boundary.x2 = newEndpoint[0];
+                boundary.y2 = newEndpoint[1];
+
                 svg.select( "#" + boundary.id )
                   .attr ( "x2", newEndpoint[0] )
                   .attr ( "y2", newEndpoint[1] )
@@ -163,10 +166,13 @@
             //select SVG object
             
             } else {
-                svg.select( "#" + boundary.id )
-                  .attr ( "x2", x1 )
-                  .attr ( "y2", y1 )
                 
+                boundary.x2 = boundary.x1;
+                boundary.y2 = boundary.y1];
+                
+                svg.select( "#" + boundary.id )
+                  .attr ( "x2", boundary.x1 )
+                  .attr ( "y2", boundary.y1 )
             }
         }
     } 
