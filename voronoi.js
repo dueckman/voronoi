@@ -153,7 +153,7 @@
             for (i = 0; i < boundaries.length; i++) {
                 var boundary = boundaries[i];
                 
-                if ( radius > getLineLength( boundary.parentCxn ) / 2 ) {
+                if ( radius > getLineLength( boundary.parentCxn.length ) / 2 ) {
                     console.log("Hey!");
                     //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
                 //select SVG object
