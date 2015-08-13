@@ -94,9 +94,8 @@
             for (j = 0; j < perpendiculars.length; j++) {
 
                 var boundaryAngle = perpendiculars[j];
-                var length = 10;
                 var startPoint = getLineMidpoint(cxn);
-                var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
+                var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, 0 );
 
                 var boundary = {
                     x1: startPoint[0],
@@ -163,6 +162,11 @@
                 //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
             //select SVG object
             
+            } else {
+                svg.select( "#" + boundary.id )
+                  .attr ( "x2", x1 )
+                  .attr ( "y2", y1 )
+                
             }
         }
     } 
