@@ -146,6 +146,8 @@
         svg.selectAll("circle")
           .attr("r", radius);   
 
+        console.log( shortestCxnL );
+
         if ( radius > 200 ) { // ( shortestCxnL / 2 ) ) {
             console.log( boundaries.length );
             
