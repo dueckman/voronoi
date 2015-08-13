@@ -110,14 +110,14 @@
 
 
     function findBoundaries() {
-        for (i = 0; i < connections.length - 1; i++) {
+        for (i = 0; i < connections.length; i++) {
 
             var cxn = connections[i];
             var angle = getLineDirection(cxn);
             var perpendiculars = [ ( ( angle + ( Math.PI / 2 ) ) % ( 2 * Math.PI ) ), 
                                    makeAnglePositive( angle - ( Math.PI / 2 ) ) ];
 
-            for (i = 0; i < perpendiculars.length - 1; i++) {
+            for (i = 0; i < perpendiculars.length; i++) {
 
                 var boundaryAngle = perpendiculars[i];
                 var length = 10;
