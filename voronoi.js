@@ -136,10 +136,6 @@
             connections = connectCircles(circles);
             for (i = 0; i < connections.length; i++) {
                 drawLine(connections[i]);
-                //var cxnL = getLineLength( connections[i] );
-                //if ( cxnL < shortestCxnL ) {
-                //     shortestCxnL = cxnL;
-                //}
             }
             
             findBoundaries();
@@ -156,6 +152,9 @@
             
             if ( radius > boundary.parentCxn.length / 2 ) {
                 console.log("Hey!");
+                svg.select( "#" + boundary.id )
+                  .attr ( "stroke-width", 5 )
+                
                 //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
             //select SVG object
             
