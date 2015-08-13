@@ -40,8 +40,8 @@
         return radians;
     } 
 
-    function getLineLength( x1, y1, x2, y2 ) {
-        return Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
+    function getLineLength( line ) {
+        return Math.sqrt( Math.pow( line.x2 - line.x1, 2 ) + Math.pow( line.y2 - line.y1, 2 ) );
     }
 
     function getLineMidpoint( line ) {
@@ -71,9 +71,10 @@
                     y2: circlesArray[j].y,
                     type: "connection",
                     parentCircles: [ circlesArray[i], circlesArray[j] ],
-                    length: getLineLength( circlesArray[i].x, circlesArray[i].y, circlesArray[j].x, circlesArray[j].y )
                 };
-            
+                
+                cxn.length = getLineLength( cxn );
+                
                 tempCxns.push(cxn);
             }  
         }
@@ -131,7 +132,7 @@
             connections = connectCircles(circles);
             for (i = 0; i < connections.length; i++) {
                 drawLine(connections[i]);
-                var cxnL = getLineLength( connections[i].x1, connections[i].y1, connections[i].x2, connections[i].y2 );
+                var cxnL = getLineLength( connections[i] );
                 if ( cxnL < shortestCxnL ) {
                     shortestCxnL = cxnL;
                 }
@@ -146,9 +147,7 @@
         svg.selectAll("circle")
           .attr("r", radius);   
 
-        console.log( shortestCxnL );
-
-        if ( radius > 200 ) { // ( shortestCxnL / 2 ) ) {
+        if ( radius > ( shortestCxnL / 2 ) ) {
             console.log( boundaries.length );
             
             // this part breaks things
