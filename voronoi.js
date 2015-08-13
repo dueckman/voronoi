@@ -45,7 +45,7 @@
     }
 
     function getLineMidpoint( line ) {
-        return [ ( line.x1 + line.x2 ) / 2, ( linet.y1 + line.y2 ) / 2 ];
+        return [ ( line.x1 + line.x2 ) / 2, ( line.y1 + line.y2 ) / 2 ];
     }
 
     function getLineDirection( line ) {        
