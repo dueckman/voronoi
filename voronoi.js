@@ -3,7 +3,7 @@
     var MAX_N_CIRCLES = 5;
     var circles = [];               
     var connections = [];
-    var shortestCxnL = 1000;
+    //var shortestCxnL = 1000;
     var boundaries = [];           
     var circlesConnected = false;	    
 
@@ -132,10 +132,10 @@
             connections = connectCircles(circles);
             for (i = 0; i < connections.length; i++) {
                 drawLine(connections[i]);
-                var cxnL = getLineLength( connections[i] );
-                if ( cxnL < shortestCxnL ) {
-                    shortestCxnL = cxnL;
-                }
+                //var cxnL = getLineLength( connections[i] );
+                //if ( cxnL < shortestCxnL ) {
+                //     shortestCxnL = cxnL;
+                //}
             }
             
             findBoundaries();
@@ -147,21 +147,15 @@
         svg.selectAll("circle")
           .attr("r", radius);   
 
-        if ( radius > ( shortestCxnL / 2 ) ) {
-            console.log( boundaries.length );
+        for (i = 0; i < boundaries.length; i++) {
+            var boundary = boundaries[i];
             
-            // this part breaks things
-            for (i = 0; i < boundaries.length; i++) {
-                var boundary = boundaries[i];
-                
-                if ( radius > boundary.parentCxn.length / 2 ) {
-                    console.log("Hey!");
-                    //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
-                //select SVG object
-                
-                }
+            if ( radius > getLineLength( boundary.parentCxn.length ) / 2 ) {
+                console.log("Hey!");
+                //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
+            //select SVG object
+            
             }
-            //
         }
     } 
     
