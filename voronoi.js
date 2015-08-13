@@ -60,8 +60,8 @@
 
 
     function getLineEndpoint(x1,y1,angle,length) {
-        var x2 = length * Math.sin(angle) + x1;
-        var y2 = length * Math.cos(angle) + y1;
+        var x2 = length * Math.cos(angle) + x1;
+        var y2 = y1 - ( length * Math.sin(angle) );
         return [ x2, y2 ];
     }    
 
@@ -117,9 +117,9 @@
             var perpendiculars = [ ( ( angle + ( Math.PI / 2 ) ) % ( 2 * Math.PI ) ), 
                                    makeAnglePositive( angle - ( Math.PI / 2 ) ) ];
 
-            for (i = 0; i < perpendiculars.length; i++) {
+            for (j = 0; j < perpendiculars.length; j++) {
 
-                var boundaryAngle = perpendiculars[i];
+                var boundaryAngle = perpendiculars[j];
                 var length = 10;
                 var startPoint = getLineMidpoint(cxn);
                 var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
