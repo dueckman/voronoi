@@ -58,23 +58,25 @@
         return [ x2, y2 ];
     }    
 
-    function connectCircles() {
-        for (i = 0; i < circles.length - 1; i++) {
-            for (j = i + 1; j < circles.length; j++) {
+    function connectCircles( circlesArray ) {
+        var temp_cxns = [];
+        
+        for (i = 0; i < circlesArray.length - 1; i++) {
+            for (j = i + 1; j < circlesArray.length; j++) {
             
                 var cxn = {
-                    x1: circles[i].x,
-                    y1: circles[i].y,
-                    x2: circles[j].x,
-                    y2: circles[j].y,
+                    x1: circlesArray[i].x,
+                    y1: circlesArray[i].y,
+                    x2: circlesArray[j].x,
+                    y2: circlesArray[j].y,
                     type: "connection",
-                    parentCircles: [ circles[i], circles[j] ]  // or do we just want IDs here?
+                    parentCircles: [ circlesArray[i], circlesArray[j] ]
                 };
             
-                connections.push(cxn);
-                drawLine(cxn);
+                tempCxns.push(cxn);
             }  
         }
+        return tempCxns;
     } 
 
     function findBoundaries() {
@@ -123,7 +125,11 @@
             drawCircle(circle);
 
         } else if ( !circlesConnected ) {
-            connectCircles();
+            connections = connectCircles(circles);
+            for (i = 0; i < connections.length; i++) {
+                drawLine(connections[i]);
+            }
+            
             findBoundaries();
             circlesConnected = true;
         } 
