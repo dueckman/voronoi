@@ -141,7 +141,7 @@
     
         for (i = 0; i < boundaries.length; i++) {
             var boundary = boundaries[i];
-            var cxn = connectCircles( boundary.parentCircles );
+            var cxn = connectCircles( boundary.parentCircles )[0];
             
             if ( radius > getLineLength( cxn ) / 2 ) {
                 console.log("Hey!");
