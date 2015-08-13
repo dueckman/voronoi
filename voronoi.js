@@ -76,6 +76,7 @@
                 tempCxns.push(cxn);
             }  
         }
+        console.log(tempCxns);
         return tempCxns;
     } 
 
@@ -153,5 +154,4 @@
         
     } 
 
-        
 })();
