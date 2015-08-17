@@ -160,10 +160,9 @@
                     x: boundary.x2,
                     y: boundary.y2, 
                     r: nRadius.value
-                }
+                };
                     
                 drawCircle(tempCircle);
-            };  
                   
                 if ( boundary.maxLength == upperBound ) {
                     console.log("Checking upper bound");
