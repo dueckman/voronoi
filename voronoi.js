@@ -1,6 +1,6 @@
 ( function() {    
     
-    var MAX_N_CIRCLES = 2;
+    var MAX_N_CIRCLES = 3;
     var circles = [];               
     var connections = [];
     var upperBound = 1000;
@@ -163,6 +163,8 @@
                             console.log(circles[j].id, boundary.parentCircles[0].id, boundary.parentCircles[1].id);
                             
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) > radius ) {
+                                console.log(getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
+                                
                                 boundary.maxLength = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
                                 console.log("maxLength updated to", boundary.maxLength);
                             }
