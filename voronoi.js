@@ -1,9 +1,9 @@
 ( function() {    
     
-    var MAX_N_CIRCLES = 5;
+    var MAX_N_CIRCLES = 3;
     var circles = [];               
     var connections = [];
-    //var shortestCxnL = 1000;
+    var upperBound = 1000;
     var boundaries = [];           
     var circlesConnected = false;	    
 
@@ -41,8 +41,8 @@
         return radians;
     } 
 
-    function getLineLength( line ) {
-        return Math.sqrt( Math.pow( line.x2 - line.x1, 2 ) + Math.pow( line.y2 - line.y1, 2 ) );
+    function getLineLength( x1, y1, x2, y2 ) {
+        return Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
     }
 
     function getLineMidpoint( line ) {
@@ -53,15 +53,15 @@
         return makeAnglePositive( Math.atan2( ( line.y1 - line.y2 ), ( line.x2 - line.x1 ) ) );
     }
 
-    function getLineEndpoint(x1,y1,angle,length) {
+    function getLineEndpoint( x1, y1, angle, length ) {
         var x2 = length * Math.cos(angle) + x1;
         var y2 = y1 - ( length * Math.sin(angle) );
         return [ x2, y2 ];
     }    
 
     function connectCircles() {
-        for (i = 0; i < circles.length - 1; i++) {
-            for (j = i + 1; j < circles.length; j++) {
+        for ( i = 0; i < circles.length - 1; i++ ) {
+            for ( j = i + 1; j < circles.length; j++ ) {
             
                 var cxn = {
                     x1: circles[i].x,
@@ -72,7 +72,7 @@
                     parentCircles: [ circles[i], circles[j] ],
                 };
                 
-                cxn.length = getLineLength( cxn );
+                cxn.length = getLineLength( cxn.x1, cxn.y1, cxn.x2, cxn.y2 );
                 
                 connections.push(cxn);
                 // drawLine( cxn );
@@ -100,11 +100,14 @@
                     x2: endpoint[0],
                     y2: endpoint[1],
                     angle: boundaryAngle,
+                    maxLength: upperBound,
                     id: "b" + String( boundaries.length ),
                     type: "boundary",
                     parentCxn: cxn,
                     parentCircles: cxn.parentCircles 
                 };
+                
+                boundary.length = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
                 
                 boundaries.push(boundary);
                 drawLine(boundary); 
@@ -112,7 +115,7 @@
         } 
     }
 
-    svg.on('click', function() {
+    svg.on( 'click', function() {
         if ( circles.length < MAX_N_CIRCLES ) {        
             
             var coords = d3.mouse(this);
@@ -138,10 +141,10 @@
         svg.selectAll("circle")
           .attr("r", radius);   
 
-        for (i = 0; i < boundaries.length; i++) {
+        for ( i = 0; i < boundaries.length; i++ ) {
             var boundary = boundaries[i];
             
-            if ( radius > boundary.parentCxn.length / 2 ) {
+            if ( ( radius > boundary.parentCxn.length / 2 ) && ( radius < boundary.maxLength ) ) {
 
                 var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
                 var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
@@ -152,10 +155,18 @@
                 svg.select( "#" + boundary.id )
                   .attr ( "x2", newEndpoint[0] )
                   .attr ( "y2", newEndpoint[1] )
-                
-                //var endpoint = getLineEndpoint( startPoint[0], startPoint[1], boundaryAngle, length );
-            //select SVG object
-            
+                  
+                if ( boundary.maxLength == upperBound ) {
+                    for ( j = 0; j < circles.length; j++ ) {
+                        if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
+                        
+                            if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) > radius ){
+                                boundary.maxLength = boundary.length;
+                            }
+                        }
+                    }
+                }
+
             } else {
                 
                 boundary.x2 = boundary.x1;
