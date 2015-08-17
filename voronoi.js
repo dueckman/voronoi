@@ -1,6 +1,6 @@
 ( function() {    
     
-    var MAX_N_CIRCLES = 3;
+    var MAX_N_CIRCLES = 2;
     var circles = [];               
     var connections = [];
     var upperBound = 1000;
