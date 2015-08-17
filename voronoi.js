@@ -156,6 +156,14 @@
                   .attr ( "x2", newEndpoint[0] )
                   .attr ( "y2", newEndpoint[1] )
                   
+                var tempCircle = { 
+                    x: boundary.x2,
+                    y: boundary.y2, 
+                    r: nRadius.value 
+                    
+                drawCircle(tempCircle)
+            };  
+                  
                 if ( boundary.maxLength == upperBound ) {
                     console.log("Checking upper bound");
                     for ( j = 0; j < circles.length; j++ ) {
