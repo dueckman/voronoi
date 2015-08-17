@@ -160,6 +160,8 @@
                     console.log("Checking upper bound");
                     for ( j = 0; j < circles.length; j++ ) {
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
+                            console.log(circles[j].id, boundary.parentCircles[0].id, boundary.parentCircles[1].id)
+                            
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) > radius ){
                                 console.log("maxLength updated");
                                 boundary.maxLength = boundary.length;
