@@ -145,7 +145,7 @@
             var boundary = boundaries[i];
             
             if ( ( radius > boundary.parentCxn.length / 2 ) && ( radius < boundary.maxLength ) ) {
-                console.log("Updating");
+                console.log("Updating. Max boundary length =", boundary.maxLength);
                 var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
                 var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
 
@@ -160,11 +160,11 @@
                     console.log("Checking upper bound");
                     for ( j = 0; j < circles.length; j++ ) {
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
-                            console.log(circles[j].id, boundary.parentCircles[0].id, boundary.parentCircles[1].id)
+                            console.log(circles[j].id, boundary.parentCircles[0].id, boundary.parentCircles[1].id);
                             
-                            if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) > radius ){
-                                console.log("maxLength updated");
+                            if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) > radius ) {
                                 boundary.maxLength = boundary.length;
+                                console.log("maxLength updated to", boundary.maxLength);
                             }
                         }
                     }
