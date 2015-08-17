@@ -163,7 +163,7 @@
                             console.log(circles[j].id, boundary.parentCircles[0].id, boundary.parentCircles[1].id);
                             
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) > radius ) {
-                                boundary.maxLength = boundary.length;
+                                boundary.maxLength = getLineLength( boundar.x1, boundar.y1, boundary.x2, boundary.y2 );
                                 console.log("maxLength updated to", boundary.maxLength);
                             }
                         }
