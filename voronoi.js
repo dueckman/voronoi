@@ -159,9 +159,10 @@
                 var tempCircle = { 
                     x: boundary.x2,
                     y: boundary.y2, 
-                    r: nRadius.value 
+                    r: nRadius.value
+                }
                     
-                drawCircle(tempCircle)
+                drawCircle(tempCircle);
             };  
                   
                 if ( boundary.maxLength == upperBound ) {
