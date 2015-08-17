@@ -145,7 +145,7 @@
             var boundary = boundaries[i];
             
             if ( ( radius > boundary.parentCxn.length / 2 ) && ( radius < boundary.maxLength ) ) {
-
+                console.log("Updating");
                 var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
                 var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
 
@@ -157,10 +157,11 @@
                   .attr ( "y2", newEndpoint[1] )
                   
                 if ( boundary.maxLength == upperBound ) {
+                    console.log("Checking upper bound");
                     for ( j = 0; j < circles.length; j++ ) {
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
-                        
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) > radius ){
+                                console.log("maxLength updated");
                                 boundary.maxLength = boundary.length;
                             }
                         }
@@ -168,7 +169,6 @@
                 }
 
             } else {
-                
                 boundary.x2 = boundary.x1;
                 boundary.y2 = boundary.y1;
                 
