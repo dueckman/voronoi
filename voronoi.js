@@ -140,7 +140,9 @@
     function update( radius ) {  
         svg.selectAll("circle")
           .attr("r", radius);   
-
+        
+        svg.selectAll( ".temp" ).remove();
+        
         for ( i = 0; i < boundaries.length; i++ ) {
             var boundary = boundaries[i];
             
@@ -156,7 +158,7 @@
                   .attr ( "x2", newEndpoint[0] )
                   .attr ( "y2", newEndpoint[1] );
                   
-                svg.selectAll( ".temp" ).remove();
+
                   
                 if ( boundary.maxLength == upperBound ) {
                     console.log("Checking upper bound");
