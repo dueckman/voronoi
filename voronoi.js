@@ -158,8 +158,6 @@
                   .attr ( "x2", newEndpoint[0] )
                   .attr ( "y2", newEndpoint[1] );
                   
-
-                  
                 if ( boundary.maxLength == upperBound ) {
                     console.log("Checking upper bound");
                     for ( j = 0; j < circles.length; j++ ) {
@@ -177,11 +175,11 @@
                             
                             drawLine( measurement );
                         
-                        if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
-                                console.log(getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
+                            if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
+                                console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
                                 boundary.maxLength = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
-                                console.log("maxLength updated to", boundary.maxLength);
+                                console.log( boundary.id, "maxLength updated to", boundary.maxLength);
                             }
                         }
                     }
