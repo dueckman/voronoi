@@ -5,7 +5,7 @@
     var connections = [];
     var upperBound = 1000;
     var boundaries = [];           
-    var circlesConnected = false;	    
+    var circlesConnected = false;
 
     var svg = d3.select( "svg" );
     input = d3.select( "#nRadius" )  
@@ -154,19 +154,24 @@
 
                 svg.select( "#" + boundary.id )
                   .attr ( "x2", newEndpoint[0] )
-                  .attr ( "y2", newEndpoint[1] )
+                  .attr ( "y2", newEndpoint[1] );
                   
-                var tempCircle = { 
-                    x: boundary.x2,
-                    y: boundary.y2, 
-                    r: nRadius.value
-                };
-                    
-                drawCircle(tempCircle);
+                svg.selectAll( ".temp" ).remove();
                   
                 if ( boundary.maxLength == upperBound ) {
                     console.log("Checking upper bound");
                     for ( j = 0; j < circles.length; j++ ) {
+                        
+                        var measurement = { 
+                          x1: boundary.x2,
+                          y1: boundary.y2,
+                          x2: circle[j].x,
+                          y2: circle[j].y,
+                          type: "temp"
+                        };
+                        
+                        drawLine(measurement);
+                        
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
                             console.log(circles[j].id, boundary.parentCircles[0].id, boundary.parentCircles[1].id);
                             
