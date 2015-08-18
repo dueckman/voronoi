@@ -165,8 +165,8 @@
                         var measurement = { 
                           x1: boundary.x2,
                           y1: boundary.y2,
-                          x2: circle[j].x,
-                          y2: circle[j].y,
+                          x2: circles[j].x,
+                          y2: circles[j].y,
                           type: "temp"
                         };
                         
