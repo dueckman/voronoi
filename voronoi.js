@@ -75,7 +75,7 @@
                 cxn.length = getLineLength( cxn.x1, cxn.y1, cxn.x2, cxn.y2 );
                 
                 connections.push(cxn);
-                // drawLine( cxn );
+                drawLine( cxn );
             }  
         }
     } 
@@ -109,8 +109,8 @@
                 
                 boundary.length = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
                 
-                boundaries.push(boundary);
-                drawLine(boundary); 
+                boundaries.push( boundary );
+                drawLine( boundary ); 
             } 
         } 
     }
@@ -161,21 +161,21 @@
                 if ( boundary.maxLength == upperBound ) {
                     console.log("Checking upper bound");
                     for ( j = 0; j < circles.length; j++ ) {
-                        
-                        var measurement = { 
-                          x1: boundary.x2,
-                          y1: boundary.y2,
-                          x2: circles[j].x,
-                          y2: circles[j].y,
-                          type: "temp"
-                        };
-                        
-                        drawLine(measurement);
-                        
+
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
                             console.log(circles[j].id, boundary.parentCircles[0].id, boundary.parentCircles[1].id);
+
+                            var measurement = { 
+                              x1: boundary.x2,
+                              y1: boundary.y2,
+                              x2: circles[j].x,
+                              y2: circles[j].y,
+                              type: "temp"
+                            };                            
                             
-                            if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
+                            drawLine( measurement );
+                        
+                        if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 console.log(getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
                                 boundary.maxLength = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
