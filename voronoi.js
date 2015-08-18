@@ -146,7 +146,7 @@
         for ( i = 0; i < boundaries.length; i++ ) {
             var boundary = boundaries[i];
             
-            if ( ( radius > boundary.parentCxn.length / 2 ) && ( radius < boundary.maxLength ) ) {
+            if ( ( radius >= boundary.parentCxn.length / 2 ) && ( radius < boundary.maxLength ) ) {
                 //console.log( "Updating", boundary.id, "- Max boundary length =", boundary.maxLength);
                 var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
                 var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
@@ -185,7 +185,7 @@
                     }
                 }
 
-            } else if ( radius > boundary.parentCxn.length / 2 ) {
+            } else if ( radius < boundary.parentCxn.length / 2 ) {
                 boundary.x2 = boundary.x1;
                 boundary.y2 = boundary.y1;
                 
