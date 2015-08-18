@@ -185,10 +185,7 @@
                     }
                 }
 
-            } else if ( radius >= boundary.maxLength ) {
-                // do nothing
-
-            } else {
+            } else if ( radius > boundary.parentCxn.length / 2 ) {
                 boundary.x2 = boundary.x1;
                 boundary.y2 = boundary.y1;
                 
