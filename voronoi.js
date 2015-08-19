@@ -166,7 +166,7 @@
 
                 updateLineEndpoint( boundary, newEndpoint[0], newEndpoint[1]);
 
-                if ( boundary.maxLength == upperBound ) {
+                if ( boundary.maxRadius == upperBound ) {
                         for ( j = 0; j < circles.length; j++ ) {
     
                             if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
