@@ -160,7 +160,7 @@
                 if ( boundary.length > 0 ) {
                     updateLineEndpoint( boundary, boundary.x1, boundary.y1 );
                 }
-            } else if ( boundary.length < boundary.maxLength ) {
+            } else if ( radius < boundary.maxRadius ) {
                 var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
                 var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
 
