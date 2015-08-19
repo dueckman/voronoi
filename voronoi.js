@@ -59,6 +59,15 @@
         return [ x2, y2 ];
     }    
 
+    function updateLineEndpoint ( line, x, y ) {
+        line.x = x;
+        line.y = y;
+        
+        svg.select( "#" + line.id )
+          .attr ( "x2", x )
+          .attr ( "y2", y );        
+    }
+
     function connectCircles() {
         for ( i = 0; i < circles.length - 1; i++ ) {
             for ( j = i + 1; j < circles.length; j++ ) {
@@ -151,12 +160,14 @@
                     var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
                     var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
     
-                    boundary.x2 = newEndpoint[0];
-                    boundary.y2 = newEndpoint[1];
+                    updateLineEndpoint( boundary, newEndpoint[0], newEndpoint[1]);
+                    
+                    //boundary.x2 = newEndpoint[0];
+                    //boundary.y2 = newEndpoint[1];
     
-                    svg.select( "#" + boundary.id )
-                      .attr ( "x2", newEndpoint[0] )
-                      .attr ( "y2", newEndpoint[1] );
+                    //svg.select( "#" + boundary.id )
+                    //  .attr ( "x2", newEndpoint[0] )
+                    //  .attr ( "y2", newEndpoint[1] );
                       
                     if ( boundary.maxLength == upperBound ) {
                         for ( j = 0; j < circles.length; j++ ) {
