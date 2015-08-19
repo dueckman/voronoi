@@ -110,7 +110,7 @@
                     x2: endpoint[0],
                     y2: endpoint[1],
                     angle: boundaryAngle,
-                    maxLength: upperBound,
+                    maxRadius: upperBound,
                     id: "b" + String( boundaries.length ),
                     type: "boundary",
                     parentCxn: cxn,
