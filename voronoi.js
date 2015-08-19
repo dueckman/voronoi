@@ -60,8 +60,8 @@
     }    
 
     function updateLineEndpoint ( line, x, y ) {
-        line.x = x;
-        line.y = y;
+        line.x2 = x;
+        line.y2 = y;
         
         svg.select( "#" + line.id )
           .attr ( "x2", x )
