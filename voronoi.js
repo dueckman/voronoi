@@ -62,6 +62,7 @@
     function updateLineEndpoint ( line, x, y ) {
         line.x2 = x;
         line.y2 = y;
+        line.length = getLineLength ( line.x1, line.y1, line.x2, line.y2 );
         
         svg.select( "#" + line.id )
           .attr ( "x2", x )
@@ -155,20 +156,13 @@
         for ( i = 0; i < boundaries.length; i++ ) {
             var boundary = boundaries[i];
             
-            if ( radius < boundary.maxLength ) {
+            if ( boundary.length < boundary.maxLength ) {
                 if ( radius >= boundary.parentCxn.length / 2 ) {
                     var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
                     var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
     
                     updateLineEndpoint( boundary, newEndpoint[0], newEndpoint[1]);
-                    
-                    //boundary.x2 = newEndpoint[0];
-                    //boundary.y2 = newEndpoint[1];
-    
-                    //svg.select( "#" + boundary.id )
-                    //  .attr ( "x2", newEndpoint[0] )
-                    //  .attr ( "y2", newEndpoint[1] );
-                      
+
                     if ( boundary.maxLength == upperBound ) {
                         for ( j = 0; j < circles.length; j++ ) {
     
@@ -181,7 +175,6 @@
                                   y2: circles[j].y,
                                   type: "temp"
                                 };                            
-                                
                                 drawLine( measurement );
                             
                                 if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
@@ -195,12 +188,7 @@
                     }
     
                 } else {
-                    boundary.x2 = boundary.x1;
-                    boundary.y2 = boundary.y1;
-                    
-                    svg.select( "#" + boundary.id )
-                      .attr ( "x2", boundary.x1 )
-                      .attr ( "y2", boundary.y1 )
+                    updateLineEndpoint( boundary, boundary.x1, boundary.y1);
                 }
             }
         }
