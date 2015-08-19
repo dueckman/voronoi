@@ -146,52 +146,51 @@
         for ( i = 0; i < boundaries.length; i++ ) {
             var boundary = boundaries[i];
             
-            if ( ( radius >= boundary.parentCxn.length / 2 ) && ( radius < boundary.maxLength ) ) {
-                //console.log( "Updating", boundary.id, "- Max boundary length =", boundary.maxLength);
-                var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
-                var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
-
-                boundary.x2 = newEndpoint[0];
-                boundary.y2 = newEndpoint[1];
-
-                svg.select( "#" + boundary.id )
-                  .attr ( "x2", newEndpoint[0] )
-                  .attr ( "y2", newEndpoint[1] );
-                  
-                if ( boundary.maxLength == upperBound ) {
-                    //console.log( "Checking upper bound" );
-                    for ( j = 0; j < circles.length; j++ ) {
-
-                        if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
-                            //console.log( circles[j].id, boundary.parentCircles[0].id, boundary.parentCircles[1].id );
-
-                            var measurement = { 
-                              x1: boundary.x2,
-                              y1: boundary.y2,
-                              x2: circles[j].x,
-                              y2: circles[j].y,
-                              type: "temp"
-                            };                            
-                            
-                            drawLine( measurement );
-                        
-                            if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
-                                console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
+            if ( radius < boundary.maxLength ) {
+                if ( radius >= boundary.parentCxn.length / 2 ) {
+                    var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
+                    var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
+    
+                    boundary.x2 = newEndpoint[0];
+                    boundary.y2 = newEndpoint[1];
+    
+                    svg.select( "#" + boundary.id )
+                      .attr ( "x2", newEndpoint[0] )
+                      .attr ( "y2", newEndpoint[1] );
+                      
+                    if ( boundary.maxLength == upperBound ) {
+                        for ( j = 0; j < circles.length; j++ ) {
+    
+                            if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
+    
+                                var measurement = { 
+                                  x1: boundary.x2,
+                                  y1: boundary.y2,
+                                  x2: circles[j].x,
+                                  y2: circles[j].y,
+                                  type: "temp"
+                                };                            
                                 
-                                boundary.maxLength = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
-                                console.log( boundary.id, "maxLength updated to", boundary.maxLength);
+                                drawLine( measurement );
+                            
+                                if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
+                                    console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
+                                    
+                                    boundary.maxLength = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
+                                    console.log( boundary.id, "maxLength updated to", boundary.maxLength);
+                                }
                             }
                         }
                     }
+    
+                } else {
+                    boundary.x2 = boundary.x1;
+                    boundary.y2 = boundary.y1;
+                    
+                    svg.select( "#" + boundary.id )
+                      .attr ( "x2", boundary.x1 )
+                      .attr ( "y2", boundary.y1 )
                 }
-
-            } else if ( radius < boundary.parentCxn.length / 2 ) {
-                boundary.x2 = boundary.x1;
-                boundary.y2 = boundary.y1;
-                
-                svg.select( "#" + boundary.id )
-                  .attr ( "x2", boundary.x1 )
-                  .attr ( "y2", boundary.y1 )
             }
         }
     } 
