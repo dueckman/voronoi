@@ -178,7 +178,7 @@
                                   y2: circles[j].y,
                                   type: "temp"
                                 };                            
-                                drawLine( measurement );
+                                //drawLine( measurement );
                             
                                 if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                     console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
