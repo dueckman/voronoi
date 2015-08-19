@@ -181,10 +181,11 @@
                                 //drawLine( measurement );
                             
                                 if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
-                                    console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
+                                    //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                     
                                     boundary.maxLength = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
-                                    console.log( boundary.id, "maxLength updated to", boundary.maxLength);
+                                    boundary.maxRadius = radius;
+                                    //console.log( boundary.id, "maxLength updated to", boundary.maxLength);
                                 }
                             }
                         }
