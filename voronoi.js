@@ -156,6 +156,45 @@
         for ( i = 0; i < boundaries.length; i++ ) {
             var boundary = boundaries[i];
             
+            if ( radius < boundary.parentCxn.length / 2 ) {
+                if ( boundary.length > 0 ) {
+                    updateLineEndpoint( boundary, boundary.x1, boundary.y1 );
+                }
+            } else if ( boundary.length < boundary.maxLength ) {
+                var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
+                var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
+
+                updateLineEndpoint( boundary, newEndpoint[0], newEndpoint[1]);
+
+                if ( boundary.maxLength == upperBound ) {
+                        for ( j = 0; j < circles.length; j++ ) {
+    
+                            if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
+    
+                                var measurement = { 
+                                  x1: boundary.x2,
+                                  y1: boundary.y2,
+                                  x2: circles[j].x,
+                                  y2: circles[j].y,
+                                  type: "temp"
+                                };                            
+                                drawLine( measurement );
+                            
+                                if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
+                                    console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
+                                    
+                                    boundary.maxLength = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
+                                    console.log( boundary.id, "maxLength updated to", boundary.maxLength);
+                                }
+                            }
+                        }
+                    }            
+            } else {
+                // do nothing?
+            }
+            
+            
+            /*
             if ( boundary.length < boundary.maxLength ) {
                 if ( radius >= boundary.parentCxn.length / 2 ) {
                     var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
@@ -188,9 +227,10 @@
                     }
     
                 } else {
-                    updateLineEndpoint( boundary, boundary.x1, boundary.y1);
+                    updateLineEndpoint( boundary, boundary.x1, boundary.y1 );
                 }
             }
+            */
         }
     } 
     
