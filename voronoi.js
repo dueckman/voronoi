@@ -1,3 +1,5 @@
+npm install circumcenter
+
 ( function() {    
     
     var MAX_N_CIRCLES = 3;
