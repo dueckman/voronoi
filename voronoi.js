@@ -1,4 +1,4 @@
-npm install circumcenter
+npm install circumcenter;
 
 ( function() {    
     
