@@ -74,8 +74,8 @@
     }
     
     function solveQuadratic ( a, b, c ) {
-        var x1 = ( -b + sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
-        var x2 = ( -b - sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
+        var x1 = ( -b + Math.sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
+        var x2 = ( -b - Math.sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
         return [ x1, x2 ]
     }
     
