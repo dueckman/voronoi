@@ -89,11 +89,12 @@
         // circle formula: r^2 = (x-p)^2 + (q-y)^2
         var p = circle.x;
         var q = circle.y;
+        var r = circle.r;
         
         // solving the two forumlas above gives a quadratic for x with the following coefficients:
         var A = Math.pow( m, 2 ) + 1;
         var B = 2 * ( m * b - m * circle.y - circle.x );
-        var C = sq( q ) - sq( radius ) + sq( p ) - 2 * b * q + sq( b );
+        var C = sq( q ) - sq( r ) + sq( p ) - 2 * b * q + sq( b );
         
         var xs = solveQuadratic( A, B, C );
         return [ [ xs[0], m * xs[0] + b ], [ xs[1], m * xs[1] + b ] ];
