@@ -218,7 +218,7 @@
                                 
                                 var ints = findLineCircleIntersections ( boundary, circles[j] );
                                 
-                                print ints 
+                                console.log( ints ); 
                                 
                                 var length0 = getLineLength( boundary.x1, boundary.y1, ints[0][0], ints[0][1] ); 
                                 var length1 = getLineLength( boundary.x1, boundary.y1, ints[1][0], ints[1][1] ); 
