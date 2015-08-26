@@ -215,13 +215,29 @@
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
-                                boundary.maxLength = getLineLength( boundary.x1, boundary.y1, boundary.x2, boundary.y2 );
+                                var ints = findLineCircleIntersections ( boundary, circles[j] );
+                                
+                                var length0 = getLineLength( boundary.x1, boundary.y1, ints[0][0], ints[0][1]); 
+                                var length1 = getLineLength( boundary.x1, boundary.y1, ints[1][0], ints[1][1]); 
+                                
+                                var firstInt = [];
+                                if ( length0 < length1 ) {  firstInt = ints[0];  }
+                                else                     {  firstInt = ints[1];  }
+                                
+                                boundary.maxLength = getLineLength( boundary.x1, boundary.y1, firstInt[0], firstInt[1] );
                                 boundary.maxRadius = radius;
+                                boundary.outerX = firstInt[0];
+                                boundary.outerY = firstInt[1];
                                 //console.log( boundary.id, "maxLength updated to", boundary.maxLength);
                             }
                         }
                     }
                 }            
+            }
+            else {
+                if ( boundary.length != boundary.maxLength ) {
+                    updateLineEndpoint( boundary, boundary.outerX, boundary.outerY );    
+                }
             }
         }
     } 
