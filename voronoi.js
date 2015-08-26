@@ -41,8 +41,12 @@
         return radians;
     } 
 
+    function sq( n ) {
+        return Math.pow( n, 2 )
+    }
+
     function getLineLength( x1, y1, x2, y2 ) {
-        return Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
+        return Math.sqrt( sq( x2 - x1) + sq( y2 - y1 ) );
     }
 
     function getLineMidpoint( line ) {
@@ -67,6 +71,32 @@
         svg.select( "#" + line.id )
           .attr ( "x2", x )
           .attr ( "y2", y );        
+    }
+    
+    function solveQuadratic ( a, b, c ) {
+        var x1 = ( -b + sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
+        var x2 = ( -b - sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
+        return [ x1, x2 ]
+    }
+    
+    function findLineCircleIntersections ( line, circle ) {
+        output = []
+        
+        // line formula: y = mx + b
+        var m = ( line.y1 - line.y2 ) / ( line.x2 - line.x1 );
+        var b = m * line.x1 - line.y1;
+        
+        // circle formula: r^2 = (x-p)^2 + (q-y)^2
+        var p = circle.x;
+        var q = circle.y;
+        
+        // solving the two forumlas above gives a quadratic for x with the following coefficients:
+        var A = Math.pow( m, 2 ) + 1;
+        var B = 2 * ( m * b - m * circle.y - circle.x );
+        var C = sq( q ) - sq( radius ) + sq( p ) - 2 * b * q + sq( b );
+        
+        var xs = solveQuadratic( A, B, C );
+        return [ [ xs[0], m * xs[0] + b ], [ xs[1], m * xs[1] + b ] ];
     }
 
     function connectCircles() {
@@ -171,6 +201,7 @@
 
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
 
+                            /*
                             var measurement = { 
                               x1: boundary.x2,
                               y1: boundary.y2,
@@ -178,8 +209,9 @@
                               y2: circles[j].y,
                               type: "temp"
                             };                            
-                            //drawLine( measurement );
-                        
+                            drawLine( measurement );
+                            */
+                            
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
