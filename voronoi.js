@@ -269,7 +269,7 @@
                                 var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
                                 
                                 for ( k = 0; k < boundaries.length; k++ ) {
-                                    if ( boundaries[k].id.substr(0,3) == intBoundaryID ) && linesIntersect( boundary, boundaries[k] ) && {
+                                    if ( boundaries[k].id.substr(0,3) == intBoundaryID && linesIntersect( boundary, boundaries[k] ) ) {
                                           
                                         int = findIntersection ( boundary, boundaries[k] );
                                         
