@@ -123,6 +123,7 @@
             var b1 = line1.y1 - ( m1 * line1.x1 );
             var b2 = line2.y1 - ( m2 * line2.x1 );
             
+            console.log( line1.id, line2.id );
             console.log( m1, m2, b1, b2 );
             
             y = ( ( b1 - ( m1 / m2 ) * b2 ) ) / ( 1 - ( m1 / m2 ) );
