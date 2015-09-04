@@ -108,8 +108,8 @@
     function findIntersection ( line1, line2 ) {
         var m1 = ( line1.y2 - line1.y1 ) / ( line1.x2 - line1.x1 );
         var m2 = ( line2.y2 - line2.y1 ) / ( line2.x2 - line2.x1 );
-        var b1 = ( m1 * line1.x1 ) - line1.y1;
-        var b2 = ( m2 * line2.x1 ) - line2.y1;
+        var b1 = line1.y1 - ( m1 * line1.x1 );
+        var b2 = line2.y1 - ( m2 * line2.x1 );
         
         console.log( "line 1: y =", m1, "* x +", b1);
         console.log( "line 2: y =", m2, "* x +", b2);
