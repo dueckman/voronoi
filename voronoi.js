@@ -179,13 +179,13 @@
     });
 
     function update( radius ) {  
+        d3.select( "#radiusText" ).text( radius );
         
-        console.log( radius );
-        
-        d3.select("#radiusText").text(radius)
-        
-        svg.selectAll("circle")
-          .attr("r", radius);   
+        svg.selectAll( "circle" )
+          .attr( "r", radius );   
+
+        var testCircle = svg.select( "circle ");
+        console.log ( testCircle.r );
         
         svg.selectAll( ".temp" ).remove();
         
