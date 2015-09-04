@@ -78,10 +78,8 @@
         var x2 = ( -b - Math.sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
         return [ x1, x2 ]
     }
-    
+
     function findLineCircleIntersections ( line, circle ) {
-        output = []
-        
         // line formula: y = mx + b
         var m = ( line.y2 - line.y1 ) / ( line.x2 - line.x1 );
         var b = m * line.x1 - line.y1;
@@ -218,6 +216,7 @@
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
+                                console.log( boundary.id, circles[j].id )
                                 var ints = findLineCircleIntersections ( boundary, circles[j] );
                                 
                                 console.log( ints[0], ints[1] ); 
