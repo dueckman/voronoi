@@ -179,6 +179,9 @@
     });
 
     function update( radius ) {  
+        
+        console.log( radius );
+        
         d3.select("#radiusText").text(radius)
         
         svg.selectAll("circle")
