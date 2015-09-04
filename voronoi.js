@@ -105,13 +105,16 @@
     }
     */
     
-    function findIntersection ( line0, line1 ) {
-        var m0 = ( line0.y2 - line0.y1 ) / ( line0.x2 - line0.x1 );
+    function findIntersection ( line1, line2 ) {
         var m1 = ( line1.y2 - line1.y1 ) / ( line1.x2 - line1.x1 );
-        var b0 = m0 * line0.x1 - line0.y1;
-        var b1 = m1 * line1.x1 - line1.y1;
+        var m2 = ( line2.y2 - line2.y1 ) / ( line2.x2 - line2.x1 );
+        var b1 = ( m1 * line1.x1 ) - line1.y1;
+        var b2 = ( m2 * line2.x1 ) - line2.y1;
         
-        var y = - ( ( b0 - ( m0 / m1 ) * b1 ) ) / ( 1 - ( m0 / m1 ) );
+        console.log( "line 1: y =", m1, "* x +", b1);
+        console.log( "line 2: y =", m2, "* x +", b2);
+        
+        var y = ( ( b0 - ( m0 / m1 ) * b1 ) ) / ( 1 - ( m0 / m1 ) );
         var x = ( y - b0 ) / m0;
         
         console.log( x, y );
