@@ -75,8 +75,9 @@
     }
     
     function solveQuadratic ( a, b, c ) {
-        var x1 = ( -b + Math.sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
-        var x2 = ( -b - Math.sqrt( Math.pow( b, 2 ) - 4 * a * c ) ) / 2
+        var x1 = ( -b + Math.sqrt( sq( b ) - 4 * a * c ) ) / 2
+        var x2 = ( -b - Math.sqrt( sq( b ) - 4 * a * c ) ) / 2
+        console.log( x1, x2 );
         return [ x1, x2 ]
     }
 
@@ -84,18 +85,19 @@
         // line formula: y = mx + b
         var m = ( line.y2 - line.y1 ) / ( line.x2 - line.x1 );
         var b = m * line.x1 - line.y1;
-        console.log("line: y =", m, "* x +", b);
+        // TEST console.log("line: y =", m, "* x +", b);
         
         // circle formula: r^2 = (x-p)^2 + (y-q)^2
         var p = circle.x;
         var q = circle.y;
         var r = currentRadius;
-        console.log("circle:", r, "^2 = ...");
+        // TEST console.log("circle:", r, "^2 = ...");
         
         // solving the two forumlas above gives a quadratic for x with the following coefficients:
-        var A = Math.pow( m, 2 ) + 1;
-        var B = 2 * ( m * b - m * circle.y - circle.x );
-        var C = sq( q ) - sq( r ) + sq( p ) - 2 * b * q + sq( b );
+        var A = sq( m ) + 1;
+        var B = 2 * ( ( m * b ) - ( m * q ) - p );
+        var C = sq( q ) - sq( r ) + sq( p ) - ( 2 * b * q ) + sq( b );
+        console.log( A, B, C );
         
         var xs = solveQuadratic( A, B, C );
         return [ [ xs[0], m * xs[0] + b ], [ xs[1], m * xs[1] + b ] ];
