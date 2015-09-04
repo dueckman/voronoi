@@ -185,7 +185,7 @@
           .attr( "r", radius );   
 
         var testCircle = svg.select( "circle ");
-        console.log ( testCircle.r );
+        console.log ( testCircle[0].r );
         
         svg.selectAll( ".temp" ).remove();
         
