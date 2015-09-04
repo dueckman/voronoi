@@ -249,8 +249,12 @@
                                         boundaries[k].outerX = int[0];
                                         boundaries[k].outerY = int[1];
                                         boundary.maxRadius = radius;
+                                        boundary.outerX = int[0];
+                                        boundary.outerY = int[1];
                                     }
                                 }
+                                
+                                
                                 
                                 /*
                                 var int = findIntersection ( boundary, intBoundary );
