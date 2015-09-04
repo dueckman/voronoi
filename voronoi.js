@@ -237,26 +237,23 @@
                     updateLineEndpoint( boundary, boundary.x1, boundary.y1 );
                 }
             } else if ( radius < boundary.maxRadius ) {
-                var newLength = Math.sqrt( Math.pow( radius, 2 ) - Math.pow( boundary.parentCxn.length / 2, 2 ) );
+                var newLength = Math.sqrt( sq( radius ) - sq( boundary.parentCxn.length / 2 ) );
                 var newEndpoint = getLineEndpoint( boundary.x1, boundary.y1, boundary.angle, newLength );
-
                 updateLineEndpoint( boundary, newEndpoint[0], newEndpoint[1]);
 
                 if ( boundary.maxRadius == upperBound ) {
                     for ( j = 0; j < circles.length; j++ ) {
-
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
-
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 
-                                // Here we need to grab the third intersecting line
                                 var int = []
-                                var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
+                                var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString(); // Here we need to grab the third intersecting line
                                 
                                 for ( k = 0; k < boundaries.length; k++ ) {
                                     if ( boundaries[k].id.substr(0,3) == intBoundaryID && linesIntersect( boundary, boundaries[k] ) ) {
                                           
                                         int = findIntersection ( boundary, boundaries[k] );
+                                        console.log( boundary.id, boundaries[k].id, int[0], int[1] )
                                         
                                         if ( pointIsWithinLineRange( int, boundaries[k] ) ) {
                                             boundaries[k].maxRadius = radius;  // Could probably be more precise
