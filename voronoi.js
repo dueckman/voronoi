@@ -6,6 +6,7 @@
     var upperBound = 1000;
     var boundaries = [];           
     var circlesConnected = false;
+    var currentRadius = 2;
 
     var svg = d3.select( "svg" );
     input = d3.select( "#nRadius" )  
@@ -88,7 +89,7 @@
         // circle formula: r^2 = (x-p)^2 + (y-q)^2
         var p = circle.x;
         var q = circle.y;
-        var r = circle.r;
+        var r = currentRadius;
         console.log("circle:", r, "^2 = ...");
         
         // solving the two forumlas above gives a quadratic for x with the following coefficients:
@@ -179,14 +180,11 @@
     });
 
     function update( radius ) {  
-        d3.select( "#radiusText" ).text( radius );
-        
+        currentRadius = radius;
+        d3.select( "#radiusText" ).text( string( radius ) );
         svg.selectAll( "circle" )
           .attr( "r", radius );   
 
-        var testCircle = svg.select( "circle ");
-        console.log ( testCircle, testCircle[0] );
-        
         svg.selectAll( ".temp" ).remove();
         
         for ( i = 0; i < boundaries.length; i++ ) {
