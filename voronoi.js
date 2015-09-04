@@ -118,6 +118,14 @@
     function findSlope( line ) {
         return ( line.y2 - line.y1 ) / ( line.x2 - line.x1 );
     }
+    
+    function linesIntersect( line1, line2 ) {
+        if Math.abs( findSlope( line1 ) ) == Math.abs( findSlope( line2 ) ) {
+            return false;
+        } else { 
+            return true; 
+        }
+    }
 
     function findIntersection ( line1, line2 ) {
         var x, y, m1, m2, b1, b2;
@@ -155,6 +163,18 @@
         
         console.log( x, y );
         return [ x, y ];
+    }
+    
+    function pointIsWithinLineRange ( point, line ) {
+        var x = point[0], y = point[1];
+        var xRange = [ line.x1, line.x2 ].sort();
+        var yRange = [ line.y1, line.y2 ].sort();
+        
+        if ( x < xRange[0] || x > xRange[1] || y < yRange[0] || y > yRange[1]) {
+            return false;
+        } else {
+            return true;
+        }
     }
     
     function connectCircles() {
@@ -280,31 +300,23 @@
                                 var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
                                 
                                 for ( k = 0; k < boundaries.length; k++ ) {
-                                    if ( boundaries[k].id.substr(0,3) == intBoundaryID ) {
+                                    if ( boundaries[k].id.substr(0,3) == intBoundaryID ) && linesIntersect( boundary, boundaries[k] ) && {
+                                          
                                         int = findIntersection ( boundary, boundaries[k] );
-                                        boundaries[k].outerX = int[0];
-                                        boundaries[k].outerY = int[1];
-                                        boundary.maxRadius = radius;
-                                        boundary.outerX = int[0];
-                                        boundary.outerY = int[1];
+                                        
+                                        if pointIsWithinLineRange( int, boundaries[k] ) {
+                                            boundaries[k].outerX = int[0];
+                                            boundaries[k].outerY = int[1];
+                                            boundaries[k].maxRadius = radius;  // Could probably be more precise
+                                        }
                                     }
                                 }
                                 
-                                
-                                
-                                /*
-                                var int = findIntersection ( boundary, intBoundary );
-                                
-                                console.log( int );
-                                
-                                boundary.maxLength = getLineLength( boundary.x1, boundary.y1, firstInt[0], firstInt[1] );
-                                boundary.maxRadius = radius;
+                                boundary.maxRadius = radius; // Could probably be more precise
                                 boundary.outerX = int[0];
                                 boundary.outerY = int[1];
-                                //console.log( boundary.id, "maxLength updated to", boundary.maxLength);
                                 
-                                updateLineEndpoint( boundary, boundary.outerX, boundary.outerY );
-                                */
+                                // updateLineEndpoint( boundary, boundary.outerX, boundary.outerY );
                             }
                         }
                     }
