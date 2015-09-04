@@ -89,7 +89,7 @@
     }
     
     function linesIntersect( line1, line2 ) {
-        if ( getLineDirection( line 1 ) == getLineDirection( line 2 ) ) {
+        if ( getLineDirection( line1 ) == getLineDirection( line2 ) ) {
             return false;
         } else { 
             return true; 
