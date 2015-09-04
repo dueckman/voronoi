@@ -89,7 +89,7 @@
     }
     
     function linesIntersect( line1, line2 ) {
-        if ( Math.abs( findSlope( line1 ) ) == Math.abs( findSlope( line2 ) ) ) {
+        if ( getLineDirection( line 1 ) == getLineDirection( line 2 ) ) {
             return false;
         } else { 
             return true; 
