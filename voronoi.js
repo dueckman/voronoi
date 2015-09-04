@@ -262,7 +262,7 @@
                                             boundaries[k].maxRadius = radius;  // Could probably be more precise
                                             boundaries[k].outerX = int[0];
                                             boundaries[k].outerY = int[1];
-                                            updateLineEndpoint( boundaries[k], boundaries[k].outerX, boundaries[k].outerY );
+                                            updateLineEndpoint( boundaries[k], int[0], int[1] );
                                             boundaries[k].maxLength = boundaries[k].length;
                                         }
                                     }
@@ -271,7 +271,7 @@
                                 boundary.maxRadius = radius; // Could probably be more precise
                                 boundary.outerX = int[0];
                                 boundary.outerY = int[1];
-                                updateLineEndpoint( boundary, boundary.outerX, boundary.outerY );
+                                updateLineEndpoint( boundary, int[0], int[1] );
                                 boundary.maxLength = boundary.length;
                             }
                         }
