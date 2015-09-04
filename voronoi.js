@@ -83,13 +83,15 @@
         output = []
         
         // line formula: y = mx + b
-        var m = ( line.y1 - line.y2 ) / ( line.x2 - line.x1 );
+        var m = ( line.y2 - line.y1 ) / ( line.x2 - line.x1 );
         var b = m * line.x1 - line.y1;
+        console.log("line: y =", m, "* x +", b);
         
-        // circle formula: r^2 = (x-p)^2 + (q-y)^2
+        // circle formula: r^2 = (x-p)^2 + (y-q)^2
         var p = circle.x;
         var q = circle.y;
         var r = circle.r;
+        console.log("circle:", r, "^2 = ...");
         
         // solving the two forumlas above gives a quadratic for x with the following coefficients:
         var A = Math.pow( m, 2 ) + 1;
