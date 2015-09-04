@@ -236,7 +236,7 @@
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
-                                var intBoundaryID = boundary.type.substr(0,2) + circles[j].id.toString();
+                                var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
                                 console.log ( boundary.id, circles[j].id, intBoundaryID );
                                 
                                 /*
