@@ -236,8 +236,17 @@
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
+                                var int = []
                                 var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
                                 console.log ( boundary.id, circles[j].id, intBoundaryID );
+                                
+                                for ( k = 0; k < boundaries.length; k++ ) {
+                                    if ( boundaries[k].id.substr(0,3) == intBoundaryID ) {
+                                        int = findIntersection ( boundary, intBoundary );
+                                        boundaries[k].outerX = int[0];
+                                        boundaries[k].outerY = int[1];
+                                    }
+                                }
                                 
                                 /*
                                 var int = findIntersection ( boundary, intBoundary );
