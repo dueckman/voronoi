@@ -243,8 +243,11 @@
                                 for ( k = 0; k < boundaries.length; k++ ) {
                                     if ( boundaries[k].id.substr(0,3) == intBoundaryID ) {
                                         int = findIntersection ( boundary, boundaries[k] );
+                                        
+                                        
                                         boundaries[k].outerX = int[0];
                                         boundaries[k].outerY = int[1];
+                                        boundary.maxRadius = radius;
                                     }
                                 }
                                 
