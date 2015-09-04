@@ -111,7 +111,7 @@
         var b0 = m0 * line0.x1 - line0.y1;
         var b1 = m1 * line1.x1 - line1.y1;
         
-        var y = ( ( b0 - ( m0 / m1 ) * b1 ) ) / ( 1 - ( m0 / m1 ) );
+        var y = - ( ( b0 - ( m0 / m1 ) * b1 ) ) / ( 1 - ( m0 / m1 ) );
         var x = ( y - b0 ) / m0;
         
         console.log( x, y );
