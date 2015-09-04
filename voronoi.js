@@ -114,8 +114,8 @@
         console.log( "line 1: y =", m1, "* x +", b1);
         console.log( "line 2: y =", m2, "* x +", b2);
         
-        var y = ( ( b0 - ( m0 / m1 ) * b1 ) ) / ( 1 - ( m0 / m1 ) );
-        var x = ( y - b0 ) / m0;
+        var y = ( ( b1 - ( m1 / m2 ) * b2 ) ) / ( 1 - ( m1 / m2 ) );
+        var x = ( y - b1 ) / m1;
         
         console.log( x, y );
         return [ x, y ];
