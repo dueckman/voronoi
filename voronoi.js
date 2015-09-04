@@ -126,6 +126,7 @@
                     y1: circles[i].y,
                     x2: circles[j].x,
                     y2: circles[j].y,
+                    id: "c" + parentCircles[0].id.toString() + parentCircles[1].id.toString(),
                     type: "connection",
                     parentCircles: [ circles[i], circles[j] ],
                 };
@@ -159,7 +160,8 @@
                     y2: endpoint[1],
                     angle: boundaryAngle,
                     maxRadius: upperBound,
-                    type: "b" + cxn.parentCircles[0].id.toString() + cxn.parentCircles[1].id.toString(),
+                    id: "b" + cxn.parentCircles[0].id.toString() + cxn.parentCircles[1].id.toString() + j.toString(),
+                    type: "boundary",
                     parentCxn: cxn,
                     parentCircles: cxn.parentCircles 
                 };
@@ -234,7 +236,7 @@
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
-                                var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
+                                var intBoundaryID = boundary.type.substr(0,2) + circles[j].id.toString();
                                 console.log ( boundary.id, circles[j].id, intBoundaryID );
                                 
                                 /*
