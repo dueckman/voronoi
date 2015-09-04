@@ -273,7 +273,7 @@
                                           
                                         int = findIntersection ( boundary, boundaries[k] );
                                         
-                                        if pointIsWithinLineRange( int, boundaries[k] ) {
+                                        if ( pointIsWithinLineRange( int, boundaries[k] ) ) {
                                             boundaries[k].outerX = int[0];
                                             boundaries[k].outerY = int[1];
                                             boundaries[k].maxRadius = radius;  // Could probably be more precise
