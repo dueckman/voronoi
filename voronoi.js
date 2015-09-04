@@ -159,8 +159,7 @@
                     y2: endpoint[1],
                     angle: boundaryAngle,
                     maxRadius: upperBound,
-                    id: "b" + cxn.parentCircles[0].id.toString() + cxn.parentCircles[1].id.toString(),
-                    type: "boundary",
+                    type: "b" + cxn.parentCircles[0].id.toString() + cxn.parentCircles[1].id.toString(),
                     parentCxn: cxn,
                     parentCircles: cxn.parentCircles 
                 };
