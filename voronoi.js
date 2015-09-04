@@ -1,6 +1,6 @@
 ( function() {    
     
-    var MAX_N_CIRCLES = 3;
+    var MAX_N_CIRCLES = 3;  // must be an integer between 3 and 10
     var circles = [];               
     var connections = [];
     var upperBound = 1000;
@@ -159,7 +159,7 @@
                     y2: endpoint[1],
                     angle: boundaryAngle,
                     maxRadius: upperBound,
-                    id: "b" + String( boundaries.length ),
+                    id: "b" + cxn.parentCircles[0].id.toString() + cxn.parentCircles[1].id.toString(),
                     type: "boundary",
                     parentCxn: cxn,
                     parentCircles: cxn.parentCircles 
