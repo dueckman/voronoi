@@ -105,17 +105,53 @@
     }
     */
     
+    function isHoriz( line ) {
+        if ( line.y1 == line.y2 ) { return true; }
+        else { return false; }
+    }
+    
+    function isVert( line ) {
+        if ( line.x1 == line.x2 ) { return true; }
+        else { return false; }
+    }
+    
+    function findSlope( line ) {
+        return ( line.y2 - line.y1 ) / ( line.x2 - line.x1 );
+    }
+
     function findIntersection ( line1, line2 ) {
-        var m1 = ( line1.y2 - line1.y1 ) / ( line1.x2 - line1.x1 );
-        var m2 = ( line2.y2 - line2.y1 ) / ( line2.x2 - line2.x1 );
-        var b1 = line1.y1 - ( m1 * line1.x1 );
-        var b2 = line2.y1 - ( m2 * line2.x1 );
+        var x, y, m1, m2, b1, b2;
         
-        console.log( "line 1: y =", m1, "* x +", b1);
-        console.log( "line 2: y =", m2, "* x +", b2);
-        
-        var y = ( ( b1 - ( m1 / m2 ) * b2 ) ) / ( 1 - ( m1 / m2 ) );
-        var x = ( y - b1 ) / m1;
+        if ( isHoriz( line1 ) ) {
+            y = line1.y1;
+            if ( isVert( line2 ) ) {
+                x = line2.x1;
+            } else {
+                m2 = findSlope( line2 );
+                b2 = line2.y1 - ( m * line2.x1 );
+                x = ( y - b2 ) / m2;
+            }
+        } else if ( isVert( line1 ) ) {
+            x = line1.x1;
+            if ( isHoriz( line2 ) ) {
+                y = line2.y1;
+            } else {
+                m2 = findSlope( line2 );
+                b2 = line2.y1 - ( m * line2.x1 );
+                y = ( m2 * x ) + b2
+            }
+        } else {
+            var m1 = findSlope( line1 );
+            var m2 = findSlope( line2 );
+            var b1 = line1.y1 - ( m1 * line1.x1 );
+            var b2 = line2.y1 - ( m2 * line2.x1 );
+            
+            console.log( "line 1: y =", m1, "* x +", b1);
+            console.log( "line 2: y =", m2, "* x +", b2);
+            
+            y = ( ( b1 - ( m1 / m2 ) * b2 ) ) / ( 1 - ( m1 / m2 ) );
+            x = ( y - b1 ) / m1;
+        }
         
         console.log( x, y );
         return [ x, y ];
