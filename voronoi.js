@@ -126,7 +126,7 @@
                     y1: circles[i].y,
                     x2: circles[j].x,
                     y2: circles[j].y,
-                    id: "c" + parentCircles[0].id.toString() + parentCircles[1].id.toString(),
+                    id: "c" + circles[i].id.toString() + circles[j].id.toString(),
                     type: "connection",
                     parentCircles: [ circles[i], circles[j] ],
                 };
