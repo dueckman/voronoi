@@ -181,7 +181,7 @@
 
     function update( radius ) {  
         currentRadius = radius;
-        d3.select( "#radiusText" ).text( string( radius ) );
+        d3.select( "#radiusText" ).text( String( radius ) );
         svg.selectAll( "circle" )
           .attr( "r", radius );   
 
