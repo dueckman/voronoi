@@ -74,37 +74,6 @@
           .attr ( "y2", y );        
     }
     
-    /* ABANDONED METHOD - kept in case I need to cannibalize something
-    function solveQuadratic ( a, b, c ) {
-        var x1 = ( -b + Math.sqrt( sq( b ) - 4 * a * c ) ) / 2
-        var x2 = ( -b - Math.sqrt( sq( b ) - 4 * a * c ) ) / 2
-        console.log( x1, x2 );
-        return [ x1, x2 ]
-    }
-
-    function findLineCircleIntersections ( line, circle ) {
-        // line formula: y = mx + b
-        var m = ( line.y2 - line.y1 ) / ( line.x2 - line.x1 );
-        var b = m * line.x1 - line.y1;
-        // TEST console.log("line: y =", m, "* x +", b);
-        
-        // circle formula: r^2 = (x-p)^2 + (y-q)^2
-        var p = circle.x;
-        var q = circle.y;
-        var r = currentRadius;
-        // TEST console.log("circle:", r, "^2 = ...");
-        
-        // solving the two forumlas above gives a quadratic for x with the following coefficients:
-        var A = sq( m ) + 1;
-        var B = 2 * ( ( m * b ) - ( m * q ) - p );
-        var C = sq( q ) - sq( r ) + sq( p ) - ( 2 * b * q ) + sq( b );
-        console.log( A, B, C );
-        
-        var xs = solveQuadratic( A, B, C );
-        return [ [ xs[0], m * xs[0] + b ], [ xs[1], m * xs[1] + b ] ];
-    }
-    */
-    
     function isHoriz( line ) {
         if ( line.y1 == line.y2 ) { return true; }
         else { return false; }
@@ -120,7 +89,7 @@
     }
     
     function linesIntersect( line1, line2 ) {
-        if Math.abs( findSlope( line1 ) ) == Math.abs( findSlope( line2 ) ) {
+        if ( Math.abs( findSlope( line1 ) ) == Math.abs( findSlope( line2 ) ) ) {
             return false;
         } else { 
             return true; 
