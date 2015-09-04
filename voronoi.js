@@ -74,6 +74,7 @@
           .attr ( "y2", y );        
     }
     
+    /* ABANDONED METHOD - kept in case I need to cannibalize something
     function solveQuadratic ( a, b, c ) {
         var x1 = ( -b + Math.sqrt( sq( b ) - 4 * a * c ) ) / 2
         var x2 = ( -b - Math.sqrt( sq( b ) - 4 * a * c ) ) / 2
@@ -102,7 +103,20 @@
         var xs = solveQuadratic( A, B, C );
         return [ [ xs[0], m * xs[0] + b ], [ xs[1], m * xs[1] + b ] ];
     }
-
+    */
+    
+    function findIntersection ( line0, line1 ) {
+        var m0 = ( line0.y2 - line0.y1 ) / ( line0.x2 - line0.x1 );
+        var m1 = ( line1.y2 - line1.y1 ) / ( line1.x2 - line1.x1 );
+        var b0 = m0 * line0.x1 - line0.y1;
+        var b1 = m1 * line1.x1 - line1.y1;
+        
+        var y = ( ( b0 - ( m0 / m1 ) * b1 ) ) / ( 1 - ( m0 / m1 ) );
+        var x = ( y - b0 ) / m0;
+        
+        return [ x, y ];
+    }
+    
     function connectCircles() {
         for ( i = 0; i < circles.length - 1; i++ ) {
             for ( j = i + 1; j < circles.length; j++ ) {
@@ -221,25 +235,22 @@
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
-                                console.log( boundary.id, circles[j].id )
-                                var ints = findLineCircleIntersections ( boundary, circles[j] );
+                                var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
+                                console.log ( boundary.id, circle[j].id, intBoundaryID );
                                 
-                                console.log( ints[0], ints[1] ); 
+                                /*
+                                var int = findIntersection ( boundary, intBoundary );
                                 
-                                var length0 = getLineLength( boundary.x1, boundary.y1, ints[0][0], ints[0][1] ); 
-                                var length1 = getLineLength( boundary.x1, boundary.y1, ints[1][0], ints[1][1] ); 
-                                
-                                var firstInt = [];
-                                if ( length0 < length1 ) {  firstInt = ints[0];  }
-                                else                     {  firstInt = ints[1];  }
+                                console.log( int );
                                 
                                 boundary.maxLength = getLineLength( boundary.x1, boundary.y1, firstInt[0], firstInt[1] );
                                 boundary.maxRadius = radius;
-                                boundary.outerX = firstInt[0];
-                                boundary.outerY = firstInt[1];
+                                boundary.outerX = int[0];
+                                boundary.outerY = int[1];
                                 //console.log( boundary.id, "maxLength updated to", boundary.maxLength);
                                 
                                 updateLineEndpoint( boundary, boundary.outerX, boundary.outerY );
+                                */
                             }
                         }
                     }
