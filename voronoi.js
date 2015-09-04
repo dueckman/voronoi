@@ -259,9 +259,11 @@
                                         int = findIntersection ( boundary, boundaries[k] );
                                         
                                         if ( pointIsWithinLineRange( int, boundaries[k] ) ) {
+                                            boundaries[k].maxRadius = radius;  // Could probably be more precise
                                             boundaries[k].outerX = int[0];
                                             boundaries[k].outerY = int[1];
-                                            boundaries[k].maxRadius = radius;  // Could probably be more precise
+                                            updateLineEndpoint( boundaries[k], boundaries[k].outerX, boundaries[k].outerY );
+                                            boundaries[k].maxLength = boundaries[k].length;
                                         }
                                     }
                                 }
@@ -269,14 +271,13 @@
                                 boundary.maxRadius = radius; // Could probably be more precise
                                 boundary.outerX = int[0];
                                 boundary.outerY = int[1];
-                                
-                                // updateLineEndpoint( boundary, boundary.outerX, boundary.outerY );
+                                updateLineEndpoint( boundary, boundary.outerX, boundary.outerY );
+                                boundary.maxLength = boundary.length;
                             }
                         }
                     }
                 }            
-            }
-            else {
+            } else {
                 if ( boundary.length != boundary.maxLength ) {
                     updateLineEndpoint( boundary, boundary.outerX, boundary.outerY );    
                 }
