@@ -114,6 +114,7 @@
         var y = ( ( b0 - ( m0 / m1 ) * b1 ) ) / ( 1 - ( m0 / m1 ) );
         var x = ( y - b0 ) / m0;
         
+        console.log( x, y );
         return [ x, y ];
     }
     
@@ -238,13 +239,10 @@
                                 
                                 var int = []
                                 var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
-                                console.log ( boundary.id, circles[j].id, intBoundaryID );
                                 
                                 for ( k = 0; k < boundaries.length; k++ ) {
                                     if ( boundaries[k].id.substr(0,3) == intBoundaryID ) {
                                         int = findIntersection ( boundary, boundaries[k] );
-                                        
-                                        
                                         boundaries[k].outerX = int[0];
                                         boundaries[k].outerY = int[1];
                                         boundary.maxRadius = radius;
