@@ -123,6 +123,8 @@
             var b1 = line1.y1 - ( m1 * line1.x1 );
             var b2 = line2.y1 - ( m2 * line2.x1 );
             
+            console.log( m1, m2, b1, b2 );
+            
             y = ( ( b1 - ( m1 / m2 ) * b2 ) ) / ( 1 - ( m1 / m2 ) );
             x = ( y - b1 ) / m1;
         }
@@ -253,7 +255,7 @@
                                     if ( boundaries[k].id.substr(0,3) == intBoundaryID && linesIntersect( boundary, boundaries[k] ) ) {
                                           
                                         int = findIntersection ( boundary, boundaries[k] );
-                                        console.log( boundary.id, boundaries[k].id, int[0], int[1] )
+                                        console.log( boundary.id, boundaries[k].id, int[0], int[1] );
                                         
                                         if ( pointIsWithinLineRange( int, boundaries[k] ) ) {
                                             boundaries[k].maxRadius = radius;  // Could probably be more precise
