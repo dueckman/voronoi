@@ -123,14 +123,10 @@
             var b1 = line1.y1 - ( m1 * line1.x1 );
             var b2 = line2.y1 - ( m2 * line2.x1 );
             
-            console.log( "line 1: y =", m1, "* x +", b1);
-            console.log( "line 2: y =", m2, "* x +", b2);
-            
             y = ( ( b1 - ( m1 / m2 ) * b2 ) ) / ( 1 - ( m1 / m2 ) );
             x = ( y - b1 ) / m1;
         }
-        
-        console.log( x, y );
+
         return [ x, y ];
     }
     
@@ -251,20 +247,9 @@
 
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
 
-                            /*
-                            var measurement = { 
-                              x1: boundary.x2,
-                              y1: boundary.y2,
-                              x2: circles[j].x,
-                              y2: circles[j].y,
-                              type: "temp"
-                            };                            
-                            drawLine( measurement );
-                            */
-                            
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
-                                //console.log( boundary.id, getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ), radius);
                                 
+                                // Here we need to grab the third intersecting line
                                 var int = []
                                 var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString();
                                 
