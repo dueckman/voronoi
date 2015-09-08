@@ -184,12 +184,13 @@
         for ( i = 0; i < connections.length - 1; i++ ) {
             for ( j = i + 1; j < connections.length; j++ ) {
                 if ( connections[i].length > 0 && lineSegmentsIntersect( connections[i], connections[j] ) ) {
+                    console.log( connections[i].length );
                     connections[i].length = 0;
                 }
             }
         }
-        for ( k = connections.length - 1; k > 0; k-- ) {
-            if ( connections[k].length = 0 ) {
+        for ( k = connections.length - 1; k >= 0; k-- ) {
+            if ( connections[k].length == 0 ) {
                 connections.splice( k, 1 );
             }
         }
