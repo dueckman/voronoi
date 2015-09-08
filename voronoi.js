@@ -115,7 +115,7 @@
                 x = line2.x1;
             } else {
                 m2 = getLineSlope( line2 );
-                b2 = line2.y1 - ( m * line2.x1 );
+                b2 = line2.y1 - ( m2 * line2.x1 );
                 x = ( y - b2 ) / m2;
             }
         } else if ( isVert( line1 ) ) {
