@@ -1,6 +1,6 @@
 ( function() {    
     
-    var MAX_N_CIRCLES = 3;  // must be an integer between 3 and 10
+    var MAX_N_CIRCLES = 6;  // must be an integer between 3 and 10
     var circles = [];               
     var connections = [];
     var upperBound = 1000;
@@ -84,19 +84,29 @@
         else { return false; }
     }
     
-    function findSlope( line ) {
+    function getLineSlope( line ) {
         return ( line.y2 - line.y1 ) / ( line.x2 - line.x1 );
     }
     
     function linesIntersect( line1, line2 ) {
-        if ( getLineDirection( line1 ) == getLineDirection( line2 ) ) {
+        if ( getLineDirection( line1 ) % Math.PI == getLineDirection( line2 ) % Math.PI ) {
             return false;
         } else { 
             return true; 
         }
     }
 
-    function findIntersection ( line1, line2 ) {
+    function lineSegmentsIntersect( line1, line2 ) {
+        if ( linesIntersect( line1, line2 ) ) {
+            var int = findIntersection( line1, line2 );
+            if ( pointIsWithinLineRange ( int, line1 ) && pointIsWithinLineRange ( int, line2 ){
+                return true;
+            }
+        } 
+        return false;
+    }
+
+    function findIntersection( line1, line2 ) {
         var x, y, m1, m2, b1, b2;
         
         if ( isHoriz( line1 ) ) {
@@ -104,7 +114,7 @@
             if ( isVert( line2 ) ) {
                 x = line2.x1;
             } else {
-                m2 = findSlope( line2 );
+                m2 = getLineSlope( line2 );
                 b2 = line2.y1 - ( m * line2.x1 );
                 x = ( y - b2 ) / m2;
             }
@@ -113,13 +123,13 @@
             if ( isHoriz( line2 ) ) {
                 y = line2.y1;
             } else {
-                m2 = findSlope( line2 );
+                m2 = getLineSlope( line2 );
                 b2 = line2.y1 - ( m * line2.x1 );
                 y = ( m2 * x ) + b2
             }
         } else {
-            var m1 = findSlope( line1 );
-            var m2 = findSlope( line2 );
+            var m1 = getLineSlope( line1 );
+            var m2 = getLineSlope( line2 );
             var b1 = line1.y1 - ( m1 * line1.x1 );
             var b2 = line2.y1 - ( m2 * line2.x1 );
             
@@ -161,11 +171,32 @@
                 
                 cxn.length = getLineLength( cxn.x1, cxn.y1, cxn.x2, cxn.y2 );
                 
-                connections.push(cxn);
+                connections.push( cxn );
                 drawLine( cxn );
             }  
         }
     } 
+    
+    function removeExtraConnections() {
+        connections.sort( function( a, b ) {
+            return b.length - a.length; 
+        });
+        
+        var newCxns = connections[:];
+        
+        for ( i = 0; i < connections.length - 1; i++ ) {
+            for ( j = i + 1; j < connections.length; j++ ) {
+                if ( connections[i].length > 0 && lineSegmentsIntersect( connections[i], connections[j] ) ) {
+                    connections[i].length = 0;
+                }
+            }
+        }
+        for ( k = connections.length; k > 0; k-- ) {
+            if ( connections[k].length = 0 ) {
+                connections.splice( k, 1 );
+            }
+        }
+    }
 
     function findBoundaries() {
         for (i = 0; i < connections.length; i++) {
