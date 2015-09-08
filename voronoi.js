@@ -99,7 +99,7 @@
     function lineSegmentsIntersect( line1, line2 ) {
         if ( linesIntersect( line1, line2 ) ) {
             var int = findIntersection( line1, line2 );
-            if ( pointIsWithinLineRange ( int, line1 ) && pointIsWithinLineRange ( int, line2 ){
+            if ( pointIsWithinLineRange ( int, line1 ) && pointIsWithinLineRange ( int, line2 ) ) {
                 return true;
             }
         } 
