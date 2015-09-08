@@ -172,7 +172,6 @@
                 cxn.length = getLineLength( cxn.x1, cxn.y1, cxn.x2, cxn.y2 );
                 
                 connections.push( cxn );
-                drawLine( cxn );
             }  
         }
     } 
@@ -249,6 +248,10 @@
         } else if ( !circlesConnected ) {
             connectCircles();            
             circlesConnected = true;
+            removeExtraConnections();
+            for ( i = 0; i < connections.length; i++ ) {
+                drawLine( connections[i] );
+            }
             findBoundaries();
         } 
     });
