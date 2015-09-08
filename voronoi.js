@@ -188,7 +188,7 @@
                 }
             }
         }
-        for ( k = connections.length; k > 0; k-- ) {
+        for ( k = connections.length - 1; k > 0; k-- ) {
             if ( connections[k].length = 0 ) {
                 connections.splice( k, 1 );
             }
