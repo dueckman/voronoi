@@ -100,6 +100,7 @@
         if ( linesIntersect( line1, line2 ) ) {
             var int = findIntersection( line1, line2 );
             if ( pointIsWithinLineRange ( int, line1 ) && pointIsWithinLineRange ( int, line2 ) ) {
+                console.log( "intersect" );
                 return true;
             }
         } 
@@ -185,7 +186,6 @@
             console.log( connections[i].length );
             for ( j = i + 1; j < connections.length; j++ ) {
                 if ( connections[i].length > 0 && lineSegmentsIntersect( connections[i], connections[j] ) ) {
-                    console.log( "intersect" );
                     connections[i].length = 0;
                 }
             }
