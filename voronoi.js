@@ -1,6 +1,6 @@
 ( function() {    
     
-    var MAX_N_CIRCLES = 6;  // must be an integer between 3 and 10
+    var MAX_N_CIRCLES = 4;  // must be an integer between 3 and 10
     var circles = [];               
     var connections = [];
     var upperBound = 1000;
