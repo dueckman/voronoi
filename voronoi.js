@@ -182,8 +182,6 @@
             return b.length - a.length; 
         });
         
-        var newCxns = connections[:];
-        
         for ( i = 0; i < connections.length - 1; i++ ) {
             for ( j = i + 1; j < connections.length; j++ ) {
                 if ( connections[i].length > 0 && lineSegmentsIntersect( connections[i], connections[j] ) ) {
