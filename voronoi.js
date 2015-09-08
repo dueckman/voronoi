@@ -182,9 +182,10 @@
         });
         
         for ( i = 0; i < connections.length - 1; i++ ) {
+            console.log( connections[i].length );
             for ( j = i + 1; j < connections.length; j++ ) {
                 if ( connections[i].length > 0 && lineSegmentsIntersect( connections[i], connections[j] ) ) {
-                    console.log( connections[i].length );
+                    console.log( "intersect" );
                     connections[i].length = 0;
                 }
             }
