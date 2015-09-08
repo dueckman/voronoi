@@ -92,6 +92,7 @@
         if ( getLineDirection( line1 ) % Math.PI == getLineDirection( line2 ) % Math.PI ) {
             return false;
         } else { 
+            console.log( "lines intersect" );
             return true; 
         }
     }
@@ -100,10 +101,11 @@
         if ( linesIntersect( line1, line2 ) ) {
             var int = findIntersection( line1, line2 );
             if ( pointIsWithinLineRange ( int, line1 ) && pointIsWithinLineRange ( int, line2 ) ) {
-                console.log( "intersect" );
+                console.log( "segments intersect" );
                 return true;
             }
         } 
+        console.log( "segments don't intersect" );
         return false;
     }
 
