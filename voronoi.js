@@ -99,8 +99,8 @@
 
     function lineSegmentsIntersect( line1, line2 ) {
         if ( linesIntersect( line1, line2 ) ) {
-            var int = findIntersection( line1, line2 );
-            if ( pointIsWithinLineRange ( int, line1 ) && pointIsWithinLineRange ( int, line2 ) ) {
+            var intersection = findIntersection( line1, line2 );
+            if ( pointIsWithinLineRange ( intersection, line1 ) && pointIsWithinLineRange ( intersection, line2 ) ) {
                 console.log( "segments intersect" );
                 return true;
             }
@@ -285,20 +285,20 @@
                         if ( circles[j] !== boundary.parentCircles[0] && circles[j] !== boundary.parentCircles[1] ) {
                             if ( getLineLength( boundary.x2, boundary.y2, circles[j].x, circles[j].y ) <= radius ) {
                                 
-                                var int = []
+                                var intersect = []
                                 var intBoundaryID = boundary.id.substr(0,2) + circles[j].id.toString(); // Here we need to grab the third intersecting line
                                 
                                 for ( k = 0; k < boundaries.length; k++ ) {
                                     if ( boundaries[k].id.substr(0,3) == intBoundaryID && linesIntersect( boundary, boundaries[k] ) ) {
                                           
-                                        int = findIntersection ( boundary, boundaries[k] );
-                                        console.log( boundary.id, boundaries[k].id, int[0], int[1] );
+                                        intersect = findIntersection ( boundary, boundaries[k] );
+                                        console.log( boundary.id, boundaries[k].id, intersection[0], intersection[1] );
                                         
-                                        if ( pointIsWithinLineRange( int, boundaries[k] ) ) {
+                                        if ( pointIsWithinLineRange( intersection, boundaries[k] ) ) {
                                             boundaries[k].maxRadius = radius;  // Could probably be more precise
-                                            boundaries[k].outerX = int[0];
-                                            boundaries[k].outerY = int[1];
-                                            //updateLineEndpoint( boundaries[k], int[0], int[1] );
+                                            boundaries[k].outerX = intersection[0];
+                                            boundaries[k].outerY = intersection[1];
+                                            //updateLineEndpoint( boundaries[k], intersection[0], intersection[1] );
                                             //boundaries[k].maxLength = boundaries[k].length;
                                         }
                                     }
@@ -307,7 +307,7 @@
                                 boundary.maxRadius = radius; // Could probably be more precise
                                 boundary.outerX = int[0];
                                 boundary.outerY = int[1];
-                                //updateLineEndpoint( boundary, int[0], int[1] );
+                                //updateLineEndpoint( boundary, intersection[0], intersection[1] );
                                 //boundary.maxLength = boundary.length;
                             }
                         }
