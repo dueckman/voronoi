@@ -264,7 +264,7 @@
         } else if ( !circlesConnected ) {
             connectCircles();            
             circlesConnected = true;
-            removeExtraConnections();
+            //removeExtraConnections();
             for ( i = 0; i < connections.length; i++ ) {
                 drawLine( connections[i] );
             }
