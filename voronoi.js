@@ -127,9 +127,21 @@
                 y = line2.y1;
             } else {
                 m2 = getLineSlope( line2 );
-                b2 = line2.y1 - ( m * line2.x1 );
+                b2 = line2.y1 - ( m2 * line2.x1 );
                 y = ( m2 * x ) + b2
             }
+        } else if ( isHoriz( line2 ) ) {
+            y = line2.y1;
+            // Vertical 'line1's caught above
+            m1 = getLineSlope( line1 );
+            b1 = line1.y1 - ( m1 * line1.x1 );
+            x = ( y - b1 ) / m1;
+        } else if ( isVert( line2 ) ) {
+            x = line2.x1;
+            // Horizontal 'line1's caught above
+            m1 = getLineSlope( line1 );
+            b1 = line1.y1 - ( m1 * line1.x1 );
+            y = ( m1 * x ) + b1
         } else {
             var m1 = getLineSlope( line1 );
             var m2 = getLineSlope( line2 );
